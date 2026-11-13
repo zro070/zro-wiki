@@ -26,22 +26,37 @@ const pageLinks = generatePageLinks(totalPages);
   <CategoryTabs />
 
   <!-- Blog Post List -->
-  <CardGroup cols="1">
-    {
-      page.data.map((blog: Post, index: number) => (
-        <PostCard
-          priority={index === 0}
-          title={blog.data.title}
-          image={blog.data.image}
-          description={blog.data.description}
-          url={"/blog/" + blog.id}
-          pubDate={blog.data.pubDate}
-          badge={blog.data.badge}
-          word={blog.remarkPluginFrontmatter.totalCharCount}
-          time={blog.remarkPluginFrontmatter.readingTime}
-        />
-      ))
-    }
-  </CardGroup>
-  <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog`} />
+  {
+    page.data.length === 0 ? (
+      <div class="card bg-base-100 shadow-lg">
+        <div class="card-body items-center text-center py-10">
+          <p class="text-base-content/60">还没有文章</p>
+        </div>
+      </div>
+    ) : (
+      <CardGroup cols="1">
+        {
+          page.data.map((blog: Post, index: number) => (
+            <PostCard
+              priority={index === 0}
+              title={blog.data.title}
+              image={blog.data.image}
+              description={blog.data.description}
+              url={"/blog/" + blog.id}
+              pubDate={blog.data.pubDate}
+              badge={blog.data.badge}
+              word={blog.remarkPluginFrontmatter.totalCharCount}
+              time={blog.remarkPluginFrontmatter.readingTime}
+            />
+          ))
+        }
+      </CardGroup>
+    )
+  }
+
+  {
+    totalPages > 0 && (
+      <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl={`/blog`} />
+    )
+  }
 </BaseLayout>

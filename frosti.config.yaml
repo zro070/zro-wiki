@@ -33,6 +33,11 @@ site:
       href: /friend
       svg: "material-symbols:supervisor-account-outline-rounded"
       target: _self
+    - id: about
+      text: About
+      href: /about
+      svg: "material-symbols:info-outline-rounded"
+      target: _self
 
 # 用户的个人信息
 user:
