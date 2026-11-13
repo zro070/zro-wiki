@@ -3,15 +3,12 @@ import { DATE_FORMAT, t, USER_NAME } from "@config";
 import type { PostData } from "@interfaces/data";
 import dayjs from "@utils/dayjs";
 import { Icon } from "astro-icon/components";
-import PostFilter from "./PostFilter.astro";
 
 const {
   title,
   url,
   pubDate,
   badge,
-  categories = [],
-  tags = [],
   word,
   time,
 } = Astro.props as PostData;
@@ -105,10 +102,8 @@ const socialLinks = [
           </a>
         </div>
 
-        <!-- Categories and Tags -->
+        <!-- License Info -->
         <div class="mt-4">
-          <PostFilter categories={categories} tags={tags} />
-          <!-- License Info -->
           <hr class="my-4" />
           <p class="text-sm opacity-75"></p>
           © {USER_NAME} |{" "}

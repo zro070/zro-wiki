@@ -1,6 +1,7 @@
 import type { CollectionEntry } from "astro:content";
 import { BLOG_PAGE_SIZE } from "@config";
 import type { Post } from "@interfaces/data";
+import { BLOG_CATEGORIES } from "./categories";
 import {
   getAllPosts,
   getPostsWithStats,
@@ -73,5 +74,17 @@ export async function getCategoryPaginationPaths({
 }: {
   paginate: any;
 }) {
-  return await getTaxonomyPaginationPaths({ paginate, key: "categories" });
+  const allPosts = await getAllPosts();
+  const sortedPosts = sortPostsByDate(allPosts);
+  const postsWithStats = await getPostsWithStats(sortedPosts);
+
+  return BLOG_CATEGORIES.flatMap((category) => {
+    const filteredPosts = postsWithStats.filter((blog: Post) =>
+      blog.data.categories?.includes(category),
+    );
+    return paginate(filteredPosts, {
+      params: { category },
+      pageSize: BLOG_PAGE_SIZE,
+    });
+  });
 }

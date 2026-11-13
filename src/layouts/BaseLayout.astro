@@ -5,6 +5,7 @@ import Header from "@components/Header.astro";
 import Navbar from "@components/Navbar.astro";
 import Sidebar from "@components/Sidebar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
+import ThemeToggle from "@components/widgets/ThemeToggle.astro";
 import {
   SITE_DESCRIPTION,
   SITE_FAVICON,
@@ -108,6 +109,10 @@ const jsonLd =
     >
       {t("label.skipToContent")}
     </a>
+
+    <div class="fixed top-4 right-4 z-[60]">
+      <ThemeToggle />
+    </div>
 
     <Navbar />
 

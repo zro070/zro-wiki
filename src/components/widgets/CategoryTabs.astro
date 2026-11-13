@@ -1,0 +1,48 @@
+---
+import { BLOG_CATEGORIES } from "@utils/categories";
+
+type Tab = {
+  label: string;
+  href: string;
+  category: string | null;
+};
+
+const tabs: Tab[] = [
+  ...BLOG_CATEGORIES.map((category) => ({
+    label: category,
+    category,
+    href: `/blog/category/${category}`,
+  })),
+  { label: "时间轴", category: null, href: "/blog" },
+];
+
+let pathname = Astro.url.pathname;
+try {
+  pathname = decodeURIComponent(pathname);
+} catch {
+  // keep the raw pathname when it's not valid percent-encoding
+}
+
+function isActive(tab: Tab): boolean {
+  if (tab.category === null) {
+    return pathname === "/blog" || /^\/blog\/\d+\/?$/.test(pathname);
+  }
+  return pathname.startsWith(`/blog/category/${tab.category}`);
+}
+---
+
+<div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+  {
+    tabs.map((tab) => (
+      <a
+        href={tab.href}
+        class:list={[
+          "btn btn-sm md:btn-md rounded-full px-5",
+          isActive(tab) ? "btn-primary" : "btn-outline",
+        ]}
+      >
+        {tab.label}
+      </a>
+    ))
+  }
+</div>

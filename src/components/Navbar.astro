@@ -1,7 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
 import { SITE_MENU, SITE_TITLE } from "../config";
-import ThemeToggle from "./widgets/ThemeToggle.astro";
 
 // Get current path to determine active link
 const currentPath = Astro.url.pathname;
@@ -45,10 +44,6 @@ const typedMenu = SITE_MENU as MenuItem[];
     <a class="btn btn-ghost text-xl hover:scale-105 transition-transform duration-300" href="/">
       {SITE_TITLE}
     </a>
-  </div>
-
-  <div class="navbar-end">
-    <ThemeToggle className="navbar-theme" />
   </div>
 
   <div

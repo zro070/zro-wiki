@@ -6,7 +6,6 @@ import dayjs from "@utils/dayjs";
 import { Icon } from "astro-icon/components";
 import Card from "./temple/Card.astro";
 import Heading from "./widgets/Heading.astro";
-import PostFilter from "./widgets/PostFilter.astro";
 import PostInfo from "./widgets/PostInfo.astro";
 
 const {
@@ -15,8 +14,6 @@ const {
   pubDate,
   description,
   badge,
-  categories = [],
-  tags = [],
   word = "0",
   time = "0",
   priority = false,
@@ -35,7 +32,6 @@ const displayDate = pubDate ? dayjs(pubDate).format(DATE_FORMAT) : "";
         <Heading url={url} title={title}>{title}</Heading>
         <p class="text-sm text-base-content/70 mb-4">{description}</p>
       </div>
-      <PostFilter categories={categories} tags={tags} />
     </div>
 
     <!-- Image Section -->
