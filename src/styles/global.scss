@@ -33,10 +33,15 @@ body {
   background-attachment: fixed;
 }
 
-/* 主题色：浅色用纯蓝，深色用 dracula 自带的紫粉色 */
+/* 主题色：浅色用纯蓝，深色保留粉、去掉紫 */
 [data-theme="winter"] {
   --color-primary: #3b82f6;
   --color-primary-content: #ffffff;
+}
+
+[data-theme="dracula"] {
+  --color-secondary: #8be9fd;
+  --color-secondary-content: #0f172a;
 }
 
 @media (prefers-reduced-motion: reduce) {
