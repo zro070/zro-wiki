@@ -1,0 +1,16 @@
+---
+interface Props {
+  username: string;
+}
+
+const { username } = Astro.props;
+---
+
+<div class="overflow-hidden rounded-xl">
+  <img
+    src={`https://ghchart.rshah.org/${username}`}
+    alt={`${username} 的 GitHub 贡献热力图`}
+    loading="lazy"
+    class="w-full h-auto"
+  />
+</div>
